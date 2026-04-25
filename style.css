@@ -1,206 +1,124 @@
-/* ------------------------------
-   БАЗОВІ НАЛАШТУВАННЯ
------------------------------- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background: #ffffff;
-  color: #222;
-  line-height: 1.65;
-}
+    :root {
+      --gray-top: #8a9099;
+      --cream: #f5f0e8;
+      --dark-navy: #1e2535;
+      --accent-line: #c0392b;
+      --text-body: #2c2c2c;
+    }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: var(--cream);
+      color: var(--text-body);
+      min-height: 100vh;
+    }
 
-h1, h2, h3 {
-  font-weight: 600;
-  margin-top: 40px;
-  margin-bottom: 20px;
-  color: #111;
-}
+    /* ─── TOP SECTION (gray) ─── */
+    .hero {
+      background: var(--gray-top);
+      padding: 48px 40px 0;
+      position: relative;
+    }
 
-p {
-  margin: 0 0 20px 0;
-  font-size: 18px;
-}
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      letter-spacing: 0.18em;
+      text-align: center;
+      color: #fff;
+      margin-bottom: 40px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
 
+    .hero-images {
+      position: relative;
+      max-width: 860px;
+      margin: 0 auto;
+      /* Extra bottom padding so the portrait overlaps into cream */
+      padding-bottom: 120px;
+    }
 
-/* ------------------------------
-   КОНТЕЙНЕРИ
------------------------------- */
+    /* Landscape photo */
+    .photo-landscape {
+      display: block;
+      width: 100%;
+      max-width: 720px;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.28);
+    }
 
-.container {
-  width: 100%;
-  max-width: 900px; /* Вузька колонка */
-  margin: 0 auto;
-  padding: 0 20px;
-}
+    /* Portrait photo — overlaps bottom-right */
+    .photo-portrait {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: clamp(160px, 22vw, 260px);
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+      background: #111; /* fallback bg for placeholder */
+    }
 
-.section-narrow {
-  padding: 40px 0 80px 0;
-}
+    /* ─── BOTTOM SECTION (cream) ─── */
+    .content {
+      background: var(--cream);
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 20px 40px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+      gap: 32px 48px;
+      align-items: start;
+    }
 
+    .name-block {
+      padding-top: 8px;
+    }
 
-/* ------------------------------
-   ХЕДЕР
------------------------------- */
+    .name-label {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      color: var(--dark-navy);
+      line-height: 1.25;
+    }
 
-.site-header {
-  background: #fff;
-  border-bottom: 1px solid #eee;
-  padding: 15px 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
+    .accent-bar {
+      display: block;
+      width: 48px;
+      height: 3px;
+      background: var(--accent-line);
+      margin-top: 14px;
+    }
 
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    .bio-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 1.6vw, 1.18rem);
+      line-height: 1.75;
+      color: var(--text-body);
+      padding-top: 8px;
+    }
 
-.logo-title {
-  font-size: 22px;
-  font-weight: 700;
-  text-decoration: none;
-  color: #111;
-}
+    /* ─── Responsive ─── */
+    @media (max-width: 640px) {
+      .hero { padding: 32px 20px 0; }
 
-.main-nav a {
-  margin-left: 20px;
-  text-decoration: none;
-  color: #444;
-  font-size: 16px;
-}
+      .hero-images { padding-bottom: 100px; }
 
-.main-nav a.active {
-  font-weight: 600;
-  color: #000;
-}
+      .photo-portrait {
+        width: 38vw;
+        bottom: 0;
+        right: 0;
+      }
 
-.lang-switch {
-  margin-left: 20px;
-  font-size: 15px;
-}
-
-.active-lang {
-  font-weight: 700;
-}
-
-
-/* ------------------------------
-   HERO
------------------------------- */
-
-.hero {
-  padding: 60px 0;
-}
-
-.hero-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.hero-photo img {
-  margin-top: 30px;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 420px;
-}
-
-.hero-subtitle {
-  font-size: 20px;
-  color: #666;
-}
-
-
-/* ------------------------------
-   ТЕКСТОВІ БЛОКИ
------------------------------- */
-
-.text-block {
-  margin-bottom: 40px;
-}
-
-.photo-wide {
-  margin: 40px 0;
-}
-
-.photo-wide img {
-  width: 100%;
-  border-radius: 6px;
-}
-
-.caption {
-  text-align: center;
-  font-size: 14px;
-  color: #777;
-  margin-top: 8px;
-}
-
-.photo-centered {
-  margin: 40px auto;
-  text-align: center;
-}
-
-.photo-centered img {
-  max-width: 500px;
-  border-radius: 6px;
-}
-
-
-/* ------------------------------
-   ГАЛЕРЕЯ
------------------------------- */
-
-.gallery {
-  margin-top: 50px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
-
-.gallery img {
-  border-radius: 6px;
-}
-
-
-/* ------------------------------
-   ФУТЕР
------------------------------- */
-
-.site-footer {
-  background: #fafafa;
-  border-top: 1px solid #eee;
-  padding: 30px 0;
-  text-align: center;
-  color: #666;
-  font-size: 15px;
-}
-
-
-/* ------------------------------
-   АДАПТИВНІСТЬ
------------------------------- */
-
-@media (max-width: 768px) {
-  .container {
-    padding: 0 16px;
-  }
-
-  .hero-inner {
-    text-align: center;
-  }
-
-  .main-nav a {
-    margin-left: 12px;
-  }
-}
+      .content {
+        grid-template-columns: 1fr;
+        padding: 16px 20px 60px;
+        gap: 20px;
+      }
+    }
